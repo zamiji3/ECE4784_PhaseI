@@ -16,7 +16,6 @@ I(1:length(t))=0; %injection current
 % Problem 3
 % I(1:length(t))=5;
 
-
 % Constants
 gK = 36; % mS/cm^2
 gNa = 120; % mS/cm^2
@@ -26,8 +25,6 @@ ENa = 115; % mV
 EL = 10.6; % mV
 Cm = 1.0; % uF/cm^2
 Vm = 0;
-
-% Equations
 
 % Initial gating variables
 alpha_m = 0.1*((25-Vm)/(exp((25-Vm)/10)-1));
@@ -52,7 +49,7 @@ for i=1:length(t)-1
     alpha_h = 0.07*exp(-Vm(i)/20);
     beta_h = 1/(exp((30-Vm(i))/10)+1);
     
-    % Currents
+    % Currents for the ions
     INa = (m(i)^3)*gNa*h(i)*(Vm(i) - ENa);
     IK = (n(i)^4)*gK*(Vm(i)-EK);
     IL = gL*(Vm(i)-EL);
@@ -75,6 +72,7 @@ end
 
 Vm = Vm-70; % Changing the rest voltage afterward
 
+% Plotting Voltage
 plot(t,Vm)
 xlabel('Time (ms)')
 ylabel('Voltage (mV)')
